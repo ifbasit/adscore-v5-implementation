@@ -1,0 +1,22 @@
+<script src="//c.adsco.re" type="text/javascript"></script>
+<script>
+AdscoreInit("QisTBQAAAAAAzdbn5N51NX_elfaHCu4g35OZDpQ", {
+    callback: async function(result) {
+        console.log(result);
+        const formData = new FormData();
+        formData.append('signature', result.signature);
+        try {
+            const response = await fetch("./adscore.php", {
+                method: 'POST',
+                body: formData
+            });
+            const html = await response.text();
+            document.open();
+            document.write(html);
+            document.close();
+        } catch (error) {
+            console.error('Verification failed:', error);
+        }
+    }
+});
+</script>
